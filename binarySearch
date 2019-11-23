@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+class binarySearch {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("How many elements? ");
+        int n = scan.nextInt();
+        if (n<=0)
+            System.out.print("Wrong number of elements");
+        else {
+            int[] array = new int[100];
+            int i = 1;
+            do {
+                System.out.print("Next Value? ");
+                array[i] = scan.nextInt();
+                i++;
+            } while (i<=n);
+            System.out.print("What is the key? ");
+            int key = scan.nextInt();
+            i = 1;
+            int j = n-1;
+            do {
+                int mid = (i+j)/2;
+                if (array[mid]<key)
+                    i = mid + 1;
+                else
+                    j = mid;
+            } while (i<j);
+            if (array[i] == key)
+                System.out.println("Key " + key + " is at position " + i);
+            else
+                System.out.println("Key " + key + " is not in the array.");
+        }
+    }
+}
