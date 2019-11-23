@@ -1,0 +1,51 @@
+package com.company;
+
+import java.util.Scanner;
+
+public class memorySort {
+
+    public static void main(String[] args) {
+        int i, k, n, max, counter;
+        max = 0;
+        Scanner input = new Scanner(System.in);
+        System.out.println("How many values to sort?");
+
+        n = input.nextInt();
+        int arrayA[] = new int[n];
+
+        System.out.println("Enter a list of " + n + " integers to sort separated only by spaces: ");
+        for (i = 0; i < n; i++)
+            arrayA[i] = input.nextInt();
+
+        max = arrayA[0];
+
+        for (i = 1; i < arrayA.length; i++) {
+            if (arrayA[i] > max) {
+                max = arrayA[i];
+            }
+        }
+
+        int arrayB[] = new int[(max+1)];
+
+        for (i = 0; i < n; i++) {
+            if (arrayA[i] <= max) {
+                arrayB[arrayA[i]] ++;
+            }
+            else {
+                arrayB[i] = 0;
+            }
+        }
+        counter = 0;
+        for (k = 0; k < max + 1; k++) {
+            if (arrayB[k] >= 1) {
+                for (int reps = arrayB[k]; reps > 0; reps--) {
+                    arrayA[counter] = k;
+                    counter++;
+                }
+            }
+        }
+        System.out.println("Your sorted array is: ");
+        for (i = 0; i < n; i++)
+            System.out.println(arrayA[i]);
+    }
+}
