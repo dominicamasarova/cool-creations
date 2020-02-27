@@ -1,0 +1,87 @@
+#Dominica Masarova
+#Dominica Masarova
+#CS 102 Spring 2020
+#February 18th
+#Program: Dice Solitaire
+#As their turn begin, a player has 0 turn-points. They can either
+#roll the dice or hold. When they roll there are two possible
+#outcomes. Most of the time the sum of the dice is added to the
+#person’s turn-points and they get another turn. But if the sum
+#is 2, 7 or 12 then they Bust, they lose all turn-points,and
+#their turn is over. Once they get to 50 points, they win.
+
+import random
+
+def main():
+    #Introduction & set variables
+    print("Welcome to Dice Solitaire! We play to 50.")
+    print("You know the rules- let’s begin!")
+    print()
+    print("Your total score is 0.")
+    print()
+    choice = 'R'
+    score = 0
+    turn = 0
+    turnScore = 0
+
+    #outer loop checks if total score is below 50
+    while (score + turnScore) < 50:
+        roll1 = random.randrange(1,7)
+        roll2 = random.randrange(1,7)
+
+        #first roll of turn
+        print("Your first roll on turn", turn + 1 , "is", roll1 \
+              , "&", roll2)
+        if (roll1+roll2) == 2 or (roll1+roll2) == 7 or \
+            (roll1+roll2) == 12:
+            print("Busted! You lost all turn-points.")
+            turnScore = 0
+            choice = 'H'
+        else:
+            turnScore += (roll1 + roll2)
+            print("You now have", turnScore, "turn points.")
+            choice = str(input("Would you like to Roll or Hold (R/H):"))
+
+        #inner loop checks for user input (R or H)
+        while choice != 'H':
+            if choice == 'R':
+                roll1 = random.randrange(1,7)
+                roll2 = random.randrange(1,7)
+                turnScore += (roll1 + roll2)
+                print("Your next roll this turn is", roll1 , "&",\
+                      roll2)
+
+                #if the roll adds up to 2,7, or 12, busted & end turn
+                if (roll1+roll2) == 2 or (roll1+roll2) == 7 or \
+                   (roll1+roll2) == 12:
+                     print("Busted! You lost all turn-points.")
+                     turnScore = 0
+                     choice = 'H'
+                #otherwise, add roll to score and cont. playing
+                else:
+                    print("You now have", turnScore, "turn points.")
+                    #turnScore += (roll1 + roll2)
+                    choice = str(input("Would you like to Roll or Hold\
+(R/H): "))
+            #error correction for input
+            else:
+                print("Sorry, that is not a permissible choice.")
+                choice = str(input("Would you like to Roll or Hold (R/H): "))
+
+        turn += 1
+        print()
+        #add turnScore only AFTER hold is chosen
+        score += turnScore
+
+        #print score depending on what turn it is
+        if (score) < 50:
+            if turn <= 1:
+                print("After 1 turn you have a total score of", score)
+            else:
+                print("After", turn, "turns you have a total score of", score)
+    #YOU WON
+    print("Congratulations! You Won! It took you" ,turn, "turns.")
+main()
+    
+        
+
