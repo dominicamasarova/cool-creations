@@ -1,0 +1,42 @@
+'''
+Homework
+- print "Welcome to weight converter"
+- ask for user name
+-ask for user weight in lb
+- convert weight to kg
+- print weight in kg
+'''
+#define function
+def weightConverter():
+    #print "Welcome to weight converter"
+    print("Welcome to the weight converter")
+
+    #ask user for their name
+    name = str(input("What is your name? "))
+
+    #ask user for their weight in lbs
+    weight = float(input("What is your weight (in lbs)? "))
+
+    #convert weight to kg
+    #kg = weight*0.453592
+    weightInKg = weight*0.453592
+
+    #print weight in kg
+    #print: Hello, NAME, your weight in kg is WEIGHTINKG.
+    print("Hello,", name, "your weight in kg is", weightInKg, ".")
+
+    #calculate weight in lbs if they gain 10 lbs
+    weightInLbs = weight + 10
+
+    #print weight + 10
+    print("Hello,", name, "your weight if they gain 10 lbs is", weightInLbs, ".")
+
+weightConverter()
+
+'''
+test cases:
+1 pound --> 0.453592
+0 pounds --> 0
+cat ---> error
+2.2 pounds --> 0.997903
+'''
